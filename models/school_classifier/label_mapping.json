@@ -1,0 +1,30 @@
+{
+  "label2id": {
+    "Amity School of Applied Sciences": 0,
+    "Amity School of Architecture & Planning": 1,
+    "Amity School of Biotechnology": 2,
+    "Amity School of Business": 3,
+    "Amity School of Communication": 4,
+    "Amity School of Computer Science": 5,
+    "Amity School of Design": 6,
+    "Amity School of Engineering & Technology": 7,
+    "Amity School of Fine Arts": 8,
+    "Amity School of Hospitality": 9,
+    "Amity School of Law": 10,
+    "Amity School of Liberal Arts": 11
+  },
+  "id2label": {
+    "0": "Amity School of Applied Sciences",
+    "1": "Amity School of Architecture & Planning",
+    "2": "Amity School of Biotechnology",
+    "3": "Amity School of Business",
+    "4": "Amity School of Communication",
+    "5": "Amity School of Computer Science",
+    "6": "Amity School of Design",
+    "7": "Amity School of Engineering & Technology",
+    "8": "Amity School of Fine Arts",
+    "9": "Amity School of Hospitality",
+    "10": "Amity School of Law",
+    "11": "Amity School of Liberal Arts"
+  }
+}

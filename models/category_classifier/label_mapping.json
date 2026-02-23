@@ -1,0 +1,20 @@
+{
+  "label2id": {
+    "Awareness": 0,
+    "Career": 1,
+    "Cultural": 2,
+    "Sports": 3,
+    "Technical": 4,
+    "Webinar": 5,
+    "Workshop": 6
+  },
+  "id2label": {
+    "0": "Awareness",
+    "1": "Career",
+    "2": "Cultural",
+    "3": "Sports",
+    "4": "Technical",
+    "5": "Webinar",
+    "6": "Workshop"
+  }
+}

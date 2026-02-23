@@ -1,0 +1,71 @@
+# 🎯 QUICK PROMPT - ML DASHBOARD (3 PAGES)
+
+## Copy and use this shorter version:
+
+---
+
+Create a professional Streamlit dashboard to showcase my Event Guidance ML Model with 3 pages:
+
+**PAGE 1 - ML MODEL OVERVIEW:**
+- Show model architecture diagram: Data → Features → Random Forest (100 trees) → Predictions
+- Display key specs: 100K records, 11 features, 26.6% accuracy, 50ms speed
+- Visual flow diagram with data pipeline
+- 5 metric cards at bottom: Training samples, Features, Trees, Accuracy, Speed
+- Status indicator: "MODEL ACTIVE"
+
+**PAGE 2 - LIVE PREDICTIONS (INTERACTIVE):**
+- Left sidebar: Input form with dropdowns/sliders for:
+  - Event selection (14 events)
+  - Student branch (CSE, IT, ECE, etc.)
+  - Academic year (1-4)
+  - Skill level (Beginner to Expert)
+  - Previous participation (None to High)
+  - Team size (1-5)
+  - Large "PREDICT" button
+
+- Right side (70%): Results display
+  - **Top row:** 2 large animated circular gauges:
+    1. Predicted Satisfaction (0-10 scale, color zones)
+    2. Model Confidence (0-100%, based on tree variance)
+  
+  - **Middle row:** 2 charts side-by-side:
+    1. Histogram of 100 tree predictions
+    2. Top 8 feature importance bars for this prediction
+  
+  - **Bottom:** Summary box with prediction details, processing time
+
+- Animations: Gauges sweep smoothly, charts fade in, all updates within 2 seconds
+
+**PAGE 3 - MODEL PERFORMANCE:**
+- Top left: Scatter plot (Actual vs Predicted) with 20K test points
+- Top right: Metric cards (R², MAE, RMSE, Speed)
+- Bottom left: Overall feature importance bar chart (all 11 features)
+- Bottom right: Key insights text box + sample predictions table
+
+**TECHNICAL SPECS:**
+- Use existing Random Forest model from event_feedback_dataset.csv
+- 11 features: event_encoded, type_encoded, level_encoded, branch_encoded, student_year, gender_encoded, skill_encoded, prev_encoded, team_size, participated_alone, event_duration_days
+- Train on 80% data, test on 20%
+- Cache model with @st.cache_resource
+- Predictions must be < 100ms
+
+**DESIGN:**
+- Colors: Blue (#3b82f6), Green (#10b981), Red (#dc2626)
+- Large fonts: 36px headers, 18px body, 48px metric numbers
+- Sidebar navigation with icons
+- Professional look for projector presentations
+- Smooth animations on prediction updates
+- White/light background, clean modern style
+
+**KEY REQUIREMENTS:**
+- Model status always visible
+- Confidence scores show reliability
+- Feature importance explains predictions
+- Fast enough for live demos
+- Looks impressive on big screens
+
+Use Streamlit, Plotly for interactive charts, sklearn for model. Should run with: `streamlit run app.py`
+
+---
+
+**That's it! Copy this to create your complete ML dashboard.**
