@@ -276,6 +276,99 @@ export default function EventsAuthPage() {
             </p>
           </motion.div>
 
+          {/* OD Portal Button - Above Roles */}
+          {!selectedRole && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8"
+            >
+              <motion.a
+                href="https://od-admin.amitycodingclub.social/"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative block max-w-4xl mx-auto"
+              >
+                {/* Animated Glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-100 animate-pulse transition-all duration-500" />
+
+                {/* Card Content */}
+                <div className="relative bg-gradient-to-br from-orange-500/20 via-amber-500/20 to-yellow-500/20 backdrop-blur-xl rounded-3xl p-6 border-2 border-orange-400/40 hover:border-orange-300/60 transition-all duration-300 overflow-hidden">
+                  {/* Animated Background Pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 via-transparent to-yellow-500/10 group-hover:translate-x-full transition-transform duration-1000" />
+
+                  <div className="relative z-10 flex items-center justify-between gap-6">
+                    {/* Left Content */}
+                    <div className="flex items-center gap-6">
+                      {/* Icon */}
+                      <motion.div
+                        whileHover={{ rotate: [0, -10, 10, -10, 0] }}
+                        transition={{ duration: 0.5 }}
+                        className="flex-shrink-0 p-4 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 shadow-2xl"
+                      >
+                        <Briefcase className="w-10 h-10 text-white" />
+                      </motion.div>
+
+                      {/* Text */}
+                      <div className="text-left">
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-2xl md:text-3xl font-black text-white">
+                            OD Portal Access
+                          </h3>
+                          <motion.div
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          >
+                            <Sparkles className="w-6 h-6 text-yellow-400" />
+                          </motion.div>
+                        </div>
+                        <p className="text-orange-200 text-sm md:text-base font-medium">
+                          Quick access to On-Duty (OD) Administration Portal • Manage leaves & approvals
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Arrow */}
+                    <motion.div
+                      animate={{ x: [0, 8, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="flex-shrink-0"
+                    >
+                      <div className="p-3 rounded-full bg-white/20 backdrop-blur-sm">
+                        <ArrowRight className="w-8 h-8 text-white" />
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Bottom Badge */}
+                  <div className="mt-4 flex items-center gap-3 text-xs text-orange-300">
+                    <div className="flex items-center gap-1">
+                      <BadgeCheck className="w-4 h-4" />
+                      <span>Instant Access</span>
+                    </div>
+                    <span className="w-1 h-1 rounded-full bg-orange-400" />
+                    <div className="flex items-center gap-1">
+                      <Zap className="w-4 h-4" />
+                      <span>No Login Required</span>
+                    </div>
+                    <span className="w-1 h-1 rounded-full bg-orange-400" />
+                    <div className="flex items-center gap-1">
+                      <Rocket className="w-4 h-4" />
+                      <span>Opens in New Tab</span>
+                    </div>
+                  </div>
+
+                  {/* Corner Decorations */}
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-yellow-400/20 to-transparent rounded-bl-full" />
+                  <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-orange-400/20 to-transparent rounded-tr-full" />
+                </div>
+              </motion.a>
+            </motion.div>
+          )}
+
           {/* Role Selection or Auth Form */}
           <AnimatePresence mode="wait">
             {!selectedRole ? (
