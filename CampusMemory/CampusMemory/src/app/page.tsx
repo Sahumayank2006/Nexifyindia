@@ -17,7 +17,7 @@ import {
   Wifi, Coffee, Car, GraduationCap, Building, MapPin, Hash, Flame,
   Hexagon, Circle, Triangle, Plus, LogIn, LogOut, Cpu, Database, Code,
   Layers, GitBranch, Server, CloudLightning, Gauge, MousePointer2,
-  Sparkle, Atom, Orbit, Binary, Braces, Box, Boxes, Trophy
+  Sparkle, Atom, Orbit, Binary, Braces, Box, Boxes, Trophy, Quote
 } from "lucide-react";
 
 export default function HomePage() {
@@ -232,201 +232,353 @@ export default function HomePage() {
         </motion.div>
       </div>
 
-      {/* SECTION 1: HERO - NEXiFY FUTURISTIC DESIGN */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 gradient-hero">
-        {/* Animated gradient overlay */}
-        <div className="absolute inset-0 opacity-30">
+      {/* SECTION 1: HERO - NEXiFY STUNNING REDESIGN */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+        {/* Futuristic Circuit Pattern Background */}
+        <div className="absolute inset-0 opacity-20">
           <div 
-            className="absolute inset-0 bg-[size:200%_200%] animate-gradient-shift" 
-            style={{ background: 'linear-gradient(45deg, transparent, rgba(0, 217, 255, 0.2), transparent)' }}
+            className="absolute inset-0 bg-[size:100px_100px]" 
+            style={{ 
+              backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.2) 1px, transparent 1px)`,
+              backgroundSize: '50px 50px'
+            }}
           />
         </div>
 
-        {/* Animated gradient orbs */}
+        {/* Animated network nodes */}
+        <div className="absolute inset-0 overflow-hidden">
+          {isMounted && [...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-[#14F1D9] rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 2, 1],
+                opacity: [0.3, 0.8, 0.3],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Giant Animated Gradient Orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#8B5CF6] rounded-full blur-[128px] opacity-30"
+          className="absolute -top-1/4 -left-1/4 w-[800px] h-[800px] bg-[#8B5CF6] rounded-full blur-[200px] opacity-20"
           animate={{
-            scale: [1, 1.2, 1],
-            x: [-50, 50, -50],
-            y: [-30, 30, -30],
+            scale: [1, 1.3, 1],
+            x: [0, 100, 0],
+            y: [0, 50, 0],
           }}
-          transition={{ duration: 15, repeat: Infinity }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#14F1D9] rounded-full blur-[128px] opacity-30"
+          className="absolute -bottom-1/4 -right-1/4 w-[800px] h-[800px] bg-[#14F1D9] rounded-full blur-[200px] opacity-20"
           animate={{
-            scale: [1.2, 1, 1.2],
-            x: [50, -50, 50],
-            y: [30, -30, 30],
+            scale: [1.3, 1, 1.3],
+            x: [0, -100, 0],
+            y: [0, -50, 0],
           }}
-          transition={{ duration: 18, repeat: Infinity }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-[#A855F7] rounded-full blur-[180px] opacity-15"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
+          }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-          {/* Logo/Brand */}
+          {/* Top Action Buttons - PRESERVED */}
           <motion.div
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
+            className="mb-12 flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <motion.button
+              onClick={() => setShowEventParticipation(true)}
+              className="group relative px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-white shadow-xl overflow-hidden"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div 
+                className="absolute inset-0 bg-white/20"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.5 }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                <Calendar className="w-5 h-5" />
+                Plan an Event? See Past Insights
+                <Lightbulb className="w-5 h-5" />
+              </span>
+            </motion.button>
+
+            <motion.button
+              onClick={() => setShowCollegeModal(true)}
+              className="group relative px-6 py-3 bg-gradient-to-r from-[#D4AF37] via-[#F4D03F] to-[#D4AF37] rounded-full font-bold text-[#0F172A] shadow-xl overflow-hidden"
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(212, 175, 55, 0.6)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div 
+                className="absolute inset-0 bg-white/30"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.5 }}
+              />
+              <span className="relative z-10 flex items-center gap-2">
+                <Rocket className="w-5 h-5" />
+                SELECT YOUR COLLEGE NOW
+                <ArrowRight className="w-5 h-5" />
+              </span>
+            </motion.button>
+          </motion.div>
+
+          {/* Brand Logo with Neon Glow */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-8"
           >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 shadow-glow">
-              <Brain className="w-6 h-6 text-[#14F1D9]" />
-              <span className="text-2xl font-bold text-white tracking-wider">NEXiFY</span>
-              <div className="w-2 h-2 bg-[#FFB800] rounded-full animate-pulse"></div>
+            <div className="inline-flex items-center gap-4 px-8 py-4 bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/20 shadow-[0_0_50px_rgba(139,92,246,0.5)]">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Cpu className="w-10 h-10 text-[#14F1D9]" />
+              </motion.div>
+              <div className="flex flex-col items-start">
+                <span className="text-4xl font-black text-white tracking-wider bg-gradient-to-r from-white via-[#14F1D9] to-white bg-clip-text text-transparent">
+                  NexiFy
+                </span>
+                <span className="text-xs text-[#FFB800] font-bold tracking-[0.3em] uppercase">Next Gen Technologies</span>
+              </div>
+              <motion.div
+                className="w-3 h-3 bg-[#FFB800] rounded-full"
+                animate={{ 
+                  scale: [1, 1.5, 1],
+                  opacity: [1, 0.5, 1] 
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
             </div>
-            <p className="text-sm text-white/60 mt-2 tracking-widest uppercase animate-fade-in">Next-Gen Intelligence Platform</p>
           </motion.div>
 
-          {/* Main Headline */}
+          {/* Main Headline - EPIC */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mb-8 animate-fade-in"
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="mb-10"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-none mb-6">
-              WHERE
-              <br />
-              <span className="bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
-                INTELLIGENCE
-              </span>
-              <br />
-              MEETS INTERACTION
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white leading-[0.9] mb-8 relative">
+              <motion.span
+                className="block mb-4"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                EMPOWERING
+              </motion.span>
+              <motion.span
+                className="block bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient"
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+              >
+                UNIVERSITY
+              </motion.span>
+              <motion.span
+                className="block text-white mt-4"
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.9, duration: 0.8 }}
+              >
+                EVENTS
+              </motion.span>
+              
+              {/* Floating 3D Cubes */}
+              <motion.div
+                className="absolute -right-20 top-10 hidden lg:block"
+                animate={{
+                  y: [0, -30, 0],
+                  rotateX: [0, 360, 720],
+                  rotateY: [0, 180, 360],
+                }}
+                transition={{ duration: 10, repeat: Infinity }}
+              >
+                <Box className="w-24 h-24 text-[#8B5CF6]/30" />
+              </motion.div>
             </h1>
             
-            <div className="w-32 h-1 bg-gradient-to-r from-[#8B5CF6] to-[#14F1D9] mx-auto rounded-full shadow-glow"></div>
+            {/* Glowing Divider */}
+            <motion.div 
+              className="h-1.5 w-48 mx-auto rounded-full bg-gradient-to-r from-transparent via-[#14F1D9] to-transparent shadow-[0_0_30px_rgba(20,241,217,0.8)]"
+              animate={{
+                scaleX: [1, 1.2, 1],
+                opacity: [0.7, 1, 0.7],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
           </motion.div>
 
-          {/* Subheadline */}
+          {/* Dynamic Tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto mb-6"
+            transition={{ delay: 1.1, duration: 0.8 }}
+            className="text-2xl md:text-3xl lg:text-4xl text-white/90 max-w-5xl mx-auto mb-12 font-light leading-relaxed"
           >
-            AI doesn't just manage events—it <span className="text-[#14F1D9] font-bold">PREDICTS</span>,{" "}
-            <span className="text-[#FFB800] font-bold">GUIDES</span>, and{" "}
-            <span className="text-[#8B5CF6] font-bold">TRANSFORMS</span> every student's journey
+            <span className="italic">Empowering University Events with</span>
+            {" "}
+            <span className="font-bold text-[#14F1D9]">AI</span>
+            {" & "}
+            <span className="font-bold text-[#FFB800]">Machine Learning</span>
           </motion.p>
 
-          {/* Power Stats */}
+          {/* Power Stats with Glassmorphism */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-8 max-w-3xl mx-auto mb-12"
+            transition={{ delay: 1.3, duration: 0.8 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-16"
           >
             {[
-              { value: "92%", label: "ML Accuracy", icon: Brain },
-              { value: "200K+", label: "Data Points", icon: Database },
-              { value: "10K+", label: "Badges", icon: Trophy },
-              { value: "Zero", label: "Paperwork", icon: Zap }
+              { value: "10K+", label: "Students", icon: Users, color: "#8B5CF6", glow: "shadow-[0_0_40px_rgba(139,92,246,0.4)]" },
+              { value: "500+", label: "Events", icon: Calendar, color: "#14F1D9", glow: "shadow-[0_0_40px_rgba(20,241,217,0.4)]" },
+              { value: "98%", label: "Satisfaction", icon: Trophy, color: "#FFB800", glow: "shadow-[0_0_40px_rgba(255,184,0,0.4)]" },
+              { value: "200K+", label: "ML Dataset", icon: Database, color: "#A855F7", glow: "shadow-[0_0_40px_rgba(168,85,247,0.4)]" }
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="flex items-center gap-3 px-4 py-2 bg-white/5 backdrop-blur-xl rounded-full border border-white/10"
-                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+                className={`relative p-6 bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 ${stat.glow} hover:scale-110 transition-all duration-300 cursor-pointer group`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4 + index * 0.1 }}
+                whileHover={{ y: -10 }}
               >
-                <stat.icon className="w-5 h-5 text-[#14F1D9]" />
-                <div className="text-left">
-                  <div className="text-lg font-black text-white">{stat.value}</div>
-                  <div className="text-xs text-white/60">{stat.label}</div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <stat.icon className="w-10 h-10 mx-auto mb-3" style={{ color: stat.color }} />
+                <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
+                <div className="text-sm text-white/60 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
+          {/* Primary CTA - EXPLORE THE FUTURE */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.7, duration: 0.6 }}
+            className="mb-16"
           >
-            {/* Select College - Primary CTA */}
             <motion.button
-              onClick={() => setShowCollegeModal(true)}
-              className="group relative px-10 py-5 bg-gradient-to-r from-[#8B5CF6] to-[#14F1D9] rounded-full font-bold text-lg text-white shadow-2xl shadow-[#8B5CF6]/50 shadow-glow overflow-hidden transition-bounce"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
+              onClick={() => {
+                document.getElementById('features-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group relative px-16 py-6 bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] rounded-full font-black text-2xl text-white shadow-[0_0_60px_rgba(139,92,246,0.6)] overflow-hidden"
+              whileHover={{ 
+                scale: 1.1,
+                boxShadow: "0 0 100px rgba(139,92,246,0.8), 0 0 150px rgba(20,241,217,0.5)"
+              }}
+              whileTap={{ scale: 0.95 }}
             >
               <motion.div
-                className="absolute inset-0 bg-white/20"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.6 }}
+                className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent"
+                animate={{
+                  x: ["-100%", "200%"],
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               />
-              <span className="relative z-10 flex items-center gap-3">
-                <Rocket className="w-6 h-6" />
-                SELECT YOUR COLLEGE 
-                <ArrowRight className="w-6 h-6" />
-              </span>
-            </motion.button>
-
-            {/* Plan an Event - Secondary CTA */}
-            <motion.button
-              onClick={() => setShowEventParticipation(true)}
-              className="group relative px-10 py-5 bg-white/10 backdrop-blur-xl border-2 border-white/20 rounded-full font-bold text-lg text-white hover:bg-white/20 transition-bounce shadow-primary hover:shadow-glow"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <span className="flex items-center gap-3">
-                <Calendar className="w-6 h-6 text-[#FFB800]" />
-                PLAN AN EVENT
-                <Sparkles className="w-6 h-6 text-[#14F1D9]" />
+              <span className="relative z-10 flex items-center gap-4">
+                <Rocket className="w-8 h-8" />
+                Explore the Future
+                <Sparkles className="w-8 h-8" />
               </span>
             </motion.button>
           </motion.div>
 
-          {/* Trust Badge */}
+          {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-col items-center gap-3 animate-fade-in"
+            transition={{ delay: 1.9, duration: 0.8 }}
+            className="flex flex-col items-center gap-4"
           >
-            <div className="flex items-center gap-2 text-white/60 text-sm transition-smooth hover:text-white/80">
-              <div className="flex -space-x-1">
-                {[1,2,3,4,5].map(i => (
-                  <Star key={i} className="w-5 h-5 text-[#FFB800] fill-[#FFB800]" />
-                ))}
-              </div>
-              <span className="ml-2">"The future of campus life is here"</span>
+            <div className="flex items-center gap-2">
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 2 + i * 0.1 }}
+                >
+                  <Star className="w-6 h-6 text-[#FFB800] fill-[#FFB800]" />
+                </motion.div>
+              ))}
             </div>
-            <p className="text-white/40 text-sm">Trusted by 12 Amity Schools • 200,000+ Data Points Analyzed</p>
+            <p className="text-white/60 text-lg">
+              <span className="text-white font-bold">Trusted by universities worldwide</span>
+              {" • "}
+              200,000+ events analyzed with AI
+            </p>
           </motion.div>
 
-          {/* Floating 3D sphere with live data */}
+          {/* Floating 3D Elements */}
           <motion.div
-            className="absolute top-20 right-10 hidden lg:block animate-float"
+            className="absolute top-32 right-20 hidden xl:block"
             animate={{
-              y: [-20, 20, -20],
-              rotate: [0, 360],
+              y: [0, -40, 0],
+              rotateY: [0, 360],
+              rotateX: [0, 180, 360],
             }}
-            transition={{
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="relative w-48 h-48 bg-gradient-to-br from-[#8B5CF6]/20 to-[#14F1D9]/20 backdrop-blur-xl rounded-3xl border border-white/10 flex items-center justify-center shadow-glow">
+            <div className="relative w-48 h-48 bg-gradient-to-br from-[#8B5CF6]/20 to-[#14F1D9]/20 backdrop-blur-2xl rounded-[3rem] border border-white/20 flex items-center justify-center shadow-[0_0_60px_rgba(139,92,246,0.4)] rotate-12">
               <div className="text-center">
-                <div className="text-4xl font-black text-white mb-2">200K+</div>
-                <div className="text-sm text-white/60">Data Points<br />Analyzed</div>
+                <Database className="w-16 h-16 text-[#14F1D9] mx-auto mb-3" />
+                <div className="text-3xl font-black text-white">200K+</div>
+                <div className="text-sm text-white/70">ML Dataset</div>
               </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-32 left-20 hidden xl:block"
+            animate={{
+              y: [0, 40, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <div className="relative w-40 h-40 bg-gradient-to-br from-[#FFB800]/20 to-[#F59E0B]/20 backdrop-blur-2xl rounded-full border border-white/20 flex items-center justify-center shadow-[0_0_60px_rgba(255,184,0,0.4)]">
+              <Brain className="w-20 h-20 text-[#FFB800]" />
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator with pulse */}
         <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+          animate={{ 
+            y: [0, 15, 0],
+            opacity: [0.5, 1, 0.5],
+          }}
+          transition={{ duration: 2.5, repeat: Infinity }}
         >
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/40 to-transparent"></div>
-            <MousePointer2 className="w-5 h-5 text-white/60" />
+          <div className="flex flex-col items-center gap-3">
+            <ChevronRight className="w-6 h-6 text-white/70 rotate-90" />
+            <div className="text-xs text-white/50 tracking-widest uppercase">Scroll to Discover</div>
           </div>
         </motion.div>
       </section>
@@ -544,8 +696,797 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FOUNDER SECTION */}
-      <FounderSection />
+      {/* ABOUT FOUNDER & TEAM - STUNNING SECTION */}
+      <section className="relative py-32 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#0F172A] overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%),
+                             radial-gradient(circle at 70% 80%, rgba(20, 241, 217, 0.3) 0%, transparent 50%),
+                             radial-gradient(circle at 50% 50%, rgba(255, 184, 0, 0.2) 0%, transparent 50%)`
+          }}></div>
+        </div>
+
+        {/* Floating Orbs */}
+        <motion.div
+          className="absolute top-10 left-10 w-64 h-64 bg-[#8B5CF6]/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, 50, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-10 right-10 w-80 h-80 bg-[#14F1D9]/20 rounded-full blur-3xl"
+          animate={{
+            scale: [1.3, 1, 1.3],
+            x: [0, -50, 0],
+            y: [0, -30, 0],
+          }}
+          transition={{ duration: 18, repeat: Infinity }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <motion.div 
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-6 shadow-[0_0_30px_rgba(139,92,246,0.3)]"
+            >
+              <Users className="w-6 h-6 text-[#FFB800]" />
+              <span className="text-sm text-white/80 tracking-widest uppercase font-bold">The Visionaries</span>
+              <Sparkles className="w-6 h-6 text-[#14F1D9]" />
+            </motion.div>
+            
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-6">
+              MEET THE
+              <br />
+              <span className="bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                DREAM TEAM
+              </span>
+            </h2>
+            <p className="text-2xl text-white/70 max-w-3xl mx-auto">
+              Students who turned frustration into innovation
+            </p>
+          </motion.div>
+
+          {/* FOUNDER CARD - Mayank Sahu */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-24"
+          >
+            <div className="relative max-w-5xl mx-auto">
+              {/* Epic Glow Effect */}
+              <div className="absolute -inset-8 bg-gradient-to-r from-[#8B5CF6]/30 via-[#14F1D9]/30 to-[#FFB800]/30 rounded-[3rem] blur-3xl animate-pulse"></div>
+              
+              <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-[3rem] border border-white/20 overflow-hidden shadow-[0_0_80px_rgba(139,92,246,0.4)]">
+                {/* Top Gradient Strip */}
+                <div className="h-3 bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800]"></div>
+                
+                <div className="p-12">
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Left - Image & Info */}
+                    <div className="flex flex-col items-center">
+                      <div className="relative group mb-6">
+                        {/* Multiple Rotating Rings */}
+                        <motion.div
+                          className="absolute -inset-8 bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] rounded-full opacity-70 blur-2xl"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 180, 360],
+                          }}
+                          transition={{ duration: 10, repeat: Infinity }}
+                        />
+                        <motion.div
+                          className="absolute -inset-4 bg-gradient-to-r from-[#FFB800] via-[#8B5CF6] to-[#14F1D9] rounded-full"
+                          animate={{
+                            rotate: [360, 0],
+                          }}
+                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                        />
+                        
+                        <div className="relative w-72 h-72 rounded-full overflow-hidden border-8 border-white/20 shadow-[0_0_60px_rgba(139,92,246,0.6)]">
+                          <img 
+                            src="https://i.ibb.co/4nVFZ7Y5/Screenshot-20260119-175013.jpg"
+                            alt="Mayank Sahu"
+                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                          />
+                        </div>
+                        
+                        {/* Floating Badge */}
+                        <motion.div
+                          className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 bg-gradient-to-r from-[#FFB800] to-[#F59E0B] rounded-full shadow-[0_0_30px_rgba(255,184,0,0.6)]"
+                          animate={{ y: [0, -10, 0] }}
+                          transition={{ duration: 3, repeat: Infinity }}
+                        >
+                          <span className="text-white font-black text-lg">FOUNDER</span>
+                        </motion.div>
+                      </div>
+                      
+                      <div className="text-center mb-6">
+                        <h3 className="text-5xl font-black text-white mb-2">Mayank Sahu</h3>
+                        <p className="text-xl text-[#14F1D9] font-bold mb-1">B.Tech IT, 2nd Year</p>
+                        <p className="text-white/60 text-sm">Founder & Visionary</p>
+                      </div>
+                    </div>
+
+                    {/* Right - Vision & Bio */}
+                    <div className="space-y-6">
+                      {/* Inspirational Quote */}
+                      <motion.div
+                        className="relative p-8 bg-gradient-to-br from-[#8B5CF6]/20 to-[#14F1D9]/10 rounded-3xl border-l-4 border-[#FFB800]"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <Quote className="absolute top-4 right-4 w-16 h-16 text-[#FFB800]/20" />
+                        <p className="text-sm text-[#FFB800] font-bold mb-3 tracking-wider">VISION</p>
+                        <p className="text-2xl font-serif italic text-white leading-relaxed">
+                          "Transform every university into an AI-powered ecosystem where students don't just attend events—they experience the future"
+                        </p>
+                      </motion.div>
+
+                      {/* Bio */}
+                      <div className="p-6 bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10">
+                        <p className="text-lg text-white/80 leading-relaxed mb-4">
+                          From struggling with outdated campus systems to building NexiFy—Mayank's journey is driven by one mission:{" "}
+                          <span className="text-[#14F1D9] font-bold">make student life effortless through AI</span>.
+                        </p>
+                        <div className="flex flex-wrap gap-3">
+                          {['AI Enthusiast', 'Problem Solver', 'Student Advocate'].map((tag, i) => (
+                            <span
+                              key={i}
+                              className="px-4 py-2 bg-gradient-to-r from-[#8B5CF6] to-[#14F1D9] rounded-full text-white text-sm font-semibold"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CORE TEAM - Jyotima & Vaibhav */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-4xl md:text-5xl font-black text-white text-center mb-12">
+              <span className="text-white/60">Powered by the</span>{" "}
+              <span className="bg-gradient-to-r from-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent">Core Team</span>
+            </h3>
+            
+            <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+              {/* Jyotima Tomar */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                whileHover={{ y: -15, scale: 1.03 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#14F1D9]/40 to-[#8B5CF6]/40 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/20 overflow-hidden">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative mb-6">
+                      <motion.div
+                        className="absolute -inset-3 bg-gradient-to-r from-[#14F1D9] to-[#8B5CF6] rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      />
+                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-[0_0_40px_rgba(20,241,217,0.5)]">
+                        <img 
+                          src="https://i.ibb.co/qM8PqxBX/image.png"
+                          alt="Jyotima Tomar"
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                    
+                    <h4 className="text-3xl font-black text-white mb-2">Jyotima Tomar</h4>
+                    <p className="text-lg text-[#14F1D9] font-bold mb-1">Co-Founder</p>
+                    <p className="text-white/60 mb-4">B.Tech IT, 2nd Year</p>
+                    
+                    <div className="w-full p-4 bg-white/5 rounded-2xl">
+                      <p className="text-white/80 text-sm">
+                        Technical architect behind NexiFy's ML models, turning data into predictions
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Vaibhav Singh */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                whileHover={{ y: -15, scale: 1.03 }}
+                className="relative group"
+              >
+                <div className="absolute -inset-4 bg-gradient-to-r from-[#FFB800]/40 to-[#F59E0B]/40 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative p-8 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl border border-white/20 overflow-hidden">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="relative mb-6">
+                      <motion.div
+                        className="absolute -inset-3 bg-gradient-to-r from-[#FFB800] to-[#F59E0B] rounded-full"
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                      />
+                      <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white/30 shadow-[0_0_40px_rgba(255,184,0,0.5)]">
+                        <img 
+                          src="https://i.ibb.co/GfJLz8pk/image.png"
+                          alt="Vaibhav Singh"
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                    
+                    <h4 className="text-3xl font-black text-white mb-2">Vaibhav Singh</h4>
+                    <p className="text-lg text-[#FFB800] font-bold mb-1">Tech Lead</p>
+                    <p className="text-white/60 mb-4">B.Tech CSE, 2nd Year</p>
+                    
+                    <div className="w-full p-4 bg-white/5 rounded-2xl">
+                      <p className="text-white/80 text-sm">
+                        Full-stack wizard crafting seamless experiences from frontend to backend
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 9 KEY FEATURES - CREATIVE SHOWCASE */}
+      <section id="features-section" className="relative py-32 bg-gradient-to-br from-white via-gray-50 to-white overflow-hidden">
+        {/* Decorative Background */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#8B5CF6]/20 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-[#14F1D9]/20 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <motion.div 
+              className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#8B5CF6]/10 to-[#14F1D9]/10 rounded-full border border-[#8B5CF6]/30 mb-6"
+            >
+              <Sparkles className="w-6 h-6 text-[#8B5CF6]" />
+              <span className="text-sm font-bold text-gray-900 tracking-widest uppercase">Powerful Features</span>
+              <Zap className="w-6 h-6 text-[#FFB800]" />
+            </motion.div>
+            
+            <h2 className="text-5xl md:text-7xl font-black text-gray-900 mb-6">
+              EVERYTHING YOU NEED,
+              <br />
+              <span className="bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                ALL IN ONE PLACE
+              </span>
+            </h2>
+            <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+              From AI-powered event management to ML predictions—we've got it all
+            </p>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Feature 1: Event Management with ML Feedback */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#8B5CF6] to-[#14F1D9] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                {/* Animated Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                {/* Icon */}
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#8B5CF6] to-[#14F1D9] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <BarChart3 className="w-10 h-10 text-white" />
+                  {/* Mini Dashboard Preview */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-lg shadow-md flex items-center justify-center">
+                    <Layers className="w-4 h-4 text-[#8B5CF6]" />
+                  </div>
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  Event Management
+                  <br />
+                  <span className="text-[#8B5CF6]">with ML Feedback</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  3 powerful dashboards (Admin, Coordinator, Student) with real-time ML insights and automated feedback loops
+                </p>
+
+                {/* Dashboard Mockup */}
+                <div className="space-y-2 p-4 bg-gray-50 rounded-xl">
+                  {['Admin', 'Coordinator', 'Student'].map((role, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-center gap-2 p-2 bg-white rounded-lg shadow-sm"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * i }}
+                    >
+                      <div className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-green-500' : i === 1 ? 'bg-blue-500' : 'bg-purple-500'}`}></div>
+                      <span className="text-sm font-semibold text-gray-700">{role} Dashboard</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 2: One-Stop OD Solution */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#14F1D9] to-[#10B981] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#14F1D9]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#14F1D9] to-[#10B981] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <FileText className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  One-Stop
+                  <br />
+                  <span className="text-[#14F1D9]">OD Solution</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  From student request to instant approval and automated attendance marking—all in one seamless flow
+                </p>
+
+                {/* Timeline */}
+                <div className="space-y-3">
+                  {[
+                    { step: 'Student Request', icon: Users },
+                    { step: 'Auto Approval', icon: CheckCircle2 },
+                    { step: 'Attendance Marked', icon: Target }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-center gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 * i }}
+                    >
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#14F1D9] to-[#10B981] rounded-full flex items-center justify-center shadow-md">
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="flex-1 p-2 bg-gray-50 rounded-lg">
+                        <span className="text-sm font-semibold text-gray-700">{item.step}</span>
+                      </div>
+                      {i < 2 && <ChevronRight className="w-4 h-4 text-gray-400" />}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 3: NLP + OCR Integration */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#FFB800] to-[#F59E0B] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#FFB800]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#FFB800] to-[#F59E0B] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <Brain className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  NLP + OCR
+                  <br />
+                  <span className="text-[#FFB800]">Integration</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Smart poster analysis with text recognition and natural language processing—extract event details in 0.3 seconds
+                </p>
+
+                {/* Visual Demo */}
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-bold text-gray-500 uppercase">Processing</span>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    >
+                      <Cpu className="w-4 h-4 text-[#FFB800]" />
+                    </motion.div>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-4 h-4 text-[#FFB800]" />
+                      <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[#FFB800] to-[#F59E0B]"
+                          initial={{ width: "0%" }}
+                          whileInView={{ width: "95%" }}
+                          transition={{ duration: 1.5 }}
+                        />
+                      </div>
+                      <span className="text-xs font-bold text-[#FFB800]">95%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 4: Alumni Interaction */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#A855F7] to-[#EC4899] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#A855F7]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#A855F7] to-[#EC4899] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <Users className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  Alumni
+                  <br />
+                  <span className="text-[#A855F7]">Interaction</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Connect with successful alumni, get mentorship, and build your professional network—all within the platform
+                </p>
+
+                {/* Network Visualization */}
+                <div className="relative h-24 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4 flex items-center justify-center overflow-hidden">
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-8 h-8 bg-gradient-to-br from-[#A855F7] to-[#EC4899] rounded-full border-2 border-white shadow-md"
+                      style={{
+                        left: `${15 + i * 15}%`,
+                        top: i % 2 === 0 ? '30%' : '60%',
+                      }}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      <GraduationCap className="w-4 h-4 text-white m-auto mt-1" />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 5: Senior Wisdom */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#10B981] to-[#059669] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#10B981]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#10B981] to-[#059669] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <Lightbulb className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  Senior
+                  <br />
+                  <span className="text-[#10B981]">Wisdom</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Access curated advice, tips, and success stories from seniors who've been there, done that
+                </p>
+
+                {/* Wisdom Tree Visualization */}
+                <div className="relative h-24 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                  <div className="flex justify-center items-end h-full gap-2">
+                    {[60, 80, 70, 90, 75].map((height, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-8 bg-gradient-to-t from-[#10B981] to-[#059669] rounded-t-lg relative group/bar"
+                        style={{ height: `${height}%` }}
+                        initial={{ height: 0 }}
+                        whileInView={{ height: `${height}%` }}
+                        transition={{ delay: i * 0.1, duration: 0.8 }}
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        <Quote className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 text-[#10B981] opacity-0 group-hover/bar:opacity-100 transition-opacity" />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 6: ML Predicted Warnings */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#EF4444] to-[#F97316] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#EF4444]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#EF4444] to-[#F97316] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <AlertTriangle className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  ML Predicted
+                  <br />
+                  <span className="text-[#EF4444]">Warnings & Feedback</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  AI analyzes patterns and predicts potential issues before they happen—proactive, not reactive
+                </p>
+
+                {/* Prediction Graph */}
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-gray-500">PREDICTION</span>
+                    <span className="text-xs font-bold text-[#EF4444]">92% Accuracy</span>
+                  </div>
+                  <div className="relative h-16">
+                    <svg className="w-full h-full" viewBox="0 0 100 40">
+                      <motion.path
+                        d="M 0,35 Q 25,30 50,15 T 100,5"
+                        stroke="url(#gradient)"
+                        strokeWidth="2"
+                        fill="none"
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        transition={{ duration: 2 }}
+                      />
+                      <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#EF4444" />
+                          <stop offset="100%" stopColor="#F97316" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <motion.div
+                      className="absolute top-0 right-2 w-3 h-3 bg-[#EF4444] rounded-full"
+                      animate={{ scale: [1, 1.5, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 7: Quiz System */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#3B82F6] to-[#2563EB] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#3B82F6] to-[#2563EB] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <BookOpen className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  Quiz for Event
+                  <br />
+                  <span className="text-[#3B82F6]">Lecture Outcomes</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Gamified post-event quizzes to measure engagement and learning outcomes with instant results
+                </p>
+
+                {/* Quiz Interface */}
+                <div className="p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-bold text-gray-500">COMPLETION</span>
+                      <span className="text-xs font-bold text-[#3B82F6]">85%</span>
+                    </div>
+                    <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-[#3B82F6] to-[#2563EB]"
+                        initial={{ width: "0%" }}
+                        whileInView={{ width: "85%" }}
+                        transition={{ duration: 1.5 }}
+                      />
+                    </div>
+                    <div className="flex items-center gap-2 mt-3">
+                      <CheckCircle2 className="w-4 h-4 text-green-500" />
+                      <span className="text-xs text-gray-600">8/10 Questions Correct</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 8: Canteen Order Management */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#F59E0B] to-[#D97706] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#F59E0B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#F59E0B] to-[#D97706] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <Coffee className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  Canteen Order
+                  <br />
+                  <span className="text-[#F59E0B]">Management</span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Two-panel system: Admin manages menu & orders, students browse and order—with real-time tracking
+                </p>
+
+                {/* Two Panels */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl text-center">
+                    <Shield className="w-6 h-6 text-[#F59E0B] mx-auto mb-2" />
+                    <span className="text-xs font-bold text-gray-700">Admin Panel</span>
+                  </div>
+                  <div className="p-3 bg-gradient-to-br from-amber-50 to-amber-100 rounded-xl text-center">
+                    <Users className="w-6 h-6 text-[#D97706] mx-auto mb-2" />
+                    <span className="text-xs font-bold text-gray-700">Student Panel</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Feature 9: 200K+ ML Dataset */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.9 }}
+              whileHover={{ y: -15, scale: 1.02 }}
+              className="relative group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] rounded-3xl blur-xl opacity-30 group-hover:opacity-70 transition-opacity"></div>
+              <div className="relative p-8 bg-white rounded-3xl border-2 border-gray-100 shadow-xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                
+                <motion.div
+                  className="relative w-20 h-20 bg-gradient-to-br from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] rounded-2xl mb-6 flex items-center justify-center shadow-lg"
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                >
+                  <Database className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <h3 className="text-2xl font-black text-gray-900 mb-3">
+                  200K+ Dataset
+                  <br />
+                  <span className="bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent">
+                    ML Model
+                  </span>
+                </h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">
+                  Trained on 200,000+ real-world data points for unmatched accuracy and intelligent predictions
+                </p>
+
+                {/* Big Data Visualization */}
+                <div className="relative p-6 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden">
+                  <motion.div
+                    className="absolute inset-0 opacity-20"
+                    animate={{
+                      backgroundPosition: ["0% 0%", "100% 100%"],
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    style={{
+                      backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2314F1D9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+                    }}
+                  />
+                  <div className="relative text-center">
+                    <motion.div
+                      className="text-6xl font-black bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent mb-2"
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      transition={{ type: "spring", duration: 1 }}
+                    >
+                      200K+
+                    </motion.div>
+                    <div className="text-sm text-white/80">Data Points Analyzed</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* NEXiFY EFFECT - THREE PILLARS */}
       <section className="relative py-32 overflow-hidden bg-gradient-to-br from-[#0A0F1E] via-[#1A1F2E] to-[#0A0F1E]">
@@ -711,6 +1652,303 @@ export default function HomePage() {
               <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-[#14F1D9] rounded-full blur-3xl opacity-0 group-hover:opacity-20 transition-opacity"></div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* WOW FACTOR - FLOATING SHAPES & TESTIMONIALS */}
+      <section className="relative py-32 bg-gradient-to-br from-[#0A0F1E] via-[#1E1535] to-[#0A0F1E] overflow-hidden">
+        {/* Animated Floating Geometric Shapes - WOW FACTOR! */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Glowing Floating Spheres */}
+          <motion.div
+            className="absolute top-20 left-20"
+            animate={{
+              y: [0, -60, 0],
+              rotate: [0, 360],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="relative w-40 h-40">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#8B5CF6]/40 to-[#14F1D9]/40 rounded-full blur-3xl animate-pulse"></div>
+              <Circle className="absolute inset-0 w-full h-full text-[#8B5CF6]/60 animate-pulse" />
+            </div>
+          </motion.div>
+
+          {/* Floating 3D Cubes */}
+          <motion.div
+            className="absolute top-1/3 right-24"
+            animate={{
+              y: [0, 50, 0],
+              rotateX: [0, 180, 360],
+              rotateY: [0, 180, 360],
+              rotateZ: [0, 180, 360],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            style={{ transformStyle: "preserve-3d" }}
+          >
+            <Box className="w-32 h-32 text-[#14F1D9]/50" />
+          </motion.div>
+
+          {/* Rotating Hexagons */}
+          <motion.div
+            className="absolute bottom-40 left-1/4"
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.5, 1],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
+            <Hexagon className="w-44 h-44 text-[#FFB800]/40" />
+          </motion.div>
+
+          {/* Floating Triangles */}
+          <motion.div
+            className="absolute top-2/3 left-1/3"
+            animate={{
+              y: [0, -40, 0],
+              rotate: [0, 120, 240, 360],
+            }}
+            transition={{ duration: 15, repeat: Infinity }}
+          >
+            <Triangle className="w-28 h-28 text-[#A855F7]/50" />
+          </motion.div>
+
+          {/* Orbiting Elements */}
+          <motion.div
+            className="absolute top-1/2 right-1/3"
+            animate={{
+              rotate: [0, 360],
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          >
+            <Orbit className="w-64 h-64 text-[#14F1D9]/30" />
+          </motion.div>
+
+          {/* Floating Particle System */}
+          {isMounted && [...Array(40)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full"
+              style={{
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 8 + 4}px`,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                background: `linear-gradient(135deg, ${['#8B5CF6', '#14F1D9', '#FFB800', '#A855F7'][Math.floor(Math.random() * 4)]}, transparent)`,
+              }}
+              animate={{
+                y: [0, -150, -300],
+                opacity: [0, 1, 0],
+                scale: [0.5, 1.5, 0.5],
+              }}
+              transition={{
+                duration: 6 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <motion.div 
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 backdrop-blur-xl rounded-full border border-white/10 mb-6 shadow-[0_0_40px_rgba(139,92,246,0.4)]"
+              animate={{
+                boxShadow: [
+                  "0 0 40px rgba(139,92,246,0.4)",
+                  "0 0 60px rgba(20,241,217,0.6)",
+                  "0 0 40px rgba(139,92,246,0.4)",
+                ],
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Trophy className="w-6 h-6 text-[#FFB800]" />
+              <span className="text-sm text-white/80 tracking-widest uppercase font-bold">Winner Edition</span>
+              <Sparkles className="w-6 h-6 text-[#14F1D9]" />
+            </motion.div>
+            
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-6">
+              <span className="block mb-4">DESIGNED FOR</span>
+              <span className="bg-gradient-to-r from-[#8B5CF6] via-[#14F1D9] to-[#FFB800] bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                THE NEXIFY EVENT
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* Stats Counter - Animated */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          >
+            {[
+              { value: "10K+", label: "Students", icon: Users, gradient: "from-[#8B5CF6] to-[#14F1D9]" },
+              { value: "500+", label: "Events", icon: Calendar, gradient: "from-[#14F1D9] to-[#10B981]" },
+              { value: "98%", label: "Satisfaction", icon: ThumbsUp, gradient: "from-[#FFB800] to-[#F59E0B]" },
+              { value: "200K+", label: "ML Dataset", icon: Database, gradient: "from-[#A855F7] to-[#EC4899]" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 200,
+                }}
+                whileHover={{ 
+                  scale: 1.15,
+                  y: -15,
+                  rotateY: 10,
+                }}
+                className="relative p-8 bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/10 text-center group cursor-pointer overflow-hidden"
+              >
+                {/* Hover Glow */}
+                <div className={`absolute -inset-1 bg-gradient-to-r ${stat.gradient} rounded-3xl opacity-0 group-hover:opacity-50 blur-xl transition-opacity`}></div>
+                
+                <div className="relative">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-r ${stat.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
+                  >
+                    <stat.icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <motion.div
+                    className="text-6xl font-black bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent mb-2"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    transition={{ type: "spring", delay: index * 0.15 + 0.3 }}
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div className="text-white/70 font-semibold text-lg">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Testimonials with Glassmorphism */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h3 className="text-4xl md:text-5xl font-black text-white text-center mb-12">
+              <span className="text-white/60">What People Say About</span>{" "}
+              <span className="bg-gradient-to-r from-[#8B5CF6] to-[#14F1D9] bg-clip-text text-transparent">NexiFy</span>
+            </h3>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  quote: "NexiFy is a revolution! The AI predictions are incredibly accurate. We've saved countless hours.",
+                  author: "Dr. Sarah Johnson",
+                  role: "Admin, Computer Science",
+                  rating: 5,
+                  gradient: "from-[#8B5CF6] to-[#14F1D9]",
+                  delay: 0.1
+                },
+                {
+                  quote: "The OD system is a game-changer. What used to take weeks now takes minutes. Absolutely brilliant!",
+                  author: "Prof. Rajesh Kumar",
+                  role: "Event Coordinator",
+                  rating: 5,
+                  gradient: "from-[#14F1D9] to-[#10B981]",
+                  delay: 0.3
+                },
+                {
+                  quote: "As a student, I love the event recommendations. It's like having a personal AI assistant!",
+                  author: "Priya Sharma",
+                  role: "Student, 3rd Year IT",
+                  rating: 5,
+                  gradient: "from-[#FFB800] to-[#F59E0B]",
+                  delay: 0.5
+                }
+              ].map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50, rotateY: -20 }}
+                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: testimonial.delay, duration: 0.8 }}
+                  whileHover={{ 
+                    y: -20,
+                    scale: 1.05,
+                    rotateY: 5,
+                  }}
+                  className="relative group"
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  {/* Epic Glow on Hover */}
+                  <div className={`absolute -inset-2 bg-gradient-to-r ${testimonial.gradient} rounded-3xl blur-2xl opacity-0 group-hover:opacity-60 transition-all duration-500`}></div>
+                  
+                  <div className="relative p-8 bg-white/5 backdrop-blur-2xl rounded-3xl border border-white/20 h-full">
+                    {/* Quote Icon */}
+                    <Quote className="w-14 h-14 text-white/10 mb-4" />
+                    
+                    {/* Quote Text */}
+                    <p className="text-xl text-white/90 mb-6 italic leading-relaxed font-light">
+                      "{testimonial.quote}"
+                    </p>
+                    
+                    {/* Author Info */}
+                    <div className="flex items-center justify-between border-t border-white/10 pt-4">
+                      <div>
+                        <div className="text-white font-bold text-lg">{testimonial.author}</div>
+                        <div className="text-white/60 text-sm mb-2">{testimonial.role}</div>
+                        <div className="flex gap-1">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              initial={{ scale: 0, rotate: -180 }}
+                              whileInView={{ scale: 1, rotate: 0 }}
+                              transition={{ delay: testimonial.delay + i * 0.1 }}
+                            >
+                              <Star className="w-5 h-5 text-[#FFB800] fill-[#FFB800]" />
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                      <motion.div
+                        className={`w-14 h-14 bg-gradient-to-r ${testimonial.gradient} rounded-full flex items-center justify-center shadow-lg`}
+                        whileHover={{ rotate: 360, scale: 1.2 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <Users className="w-7 h-7 text-white" />
+                      </motion.div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Footer Note */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+            className="text-center"
+          >
+            <p className="text-white/60 text-sm italic">
+              "Designed for the Nexify Event – Winner Edition"
+            </p>
+          </motion.div>
         </div>
       </section>
 
