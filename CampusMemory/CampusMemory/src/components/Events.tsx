@@ -32,6 +32,28 @@ import {
   type StudentProfile,
 } from "@/lib/api";
 import { images, getEventImage } from "@/lib/images";
+import { 
+  calculateMatch, 
+  isClosingSoon, 
+  shouldShowRecommendation, 
+  getAlertMessage, 
+  AlertManager,
+  type Event as OpportunityEvent,
+  type Student
+} from "@/lib/opportunityPredictor";
+import { 
+  AIRecommendedBadge, 
+  MissedOpportunityAlert 
+} from "@/components/gamification/NotificationComponents";
+import { 
+  addPointsForParticipation, 
+  getStudentPoints,
+  getPointsForEventType
+} from "@/lib/gamification/pointsManager";
+import { 
+  getStudentBadgeStatus,
+  formatBadgeName
+} from "@/lib/gamification/badgeManager";
 
 interface EventsProps {
   currentStudent: any;
@@ -47,13 +69,84 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
   const [showGuidanceModal, setShowGuidanceModal] = useState(false);
   const [registering, setRegistering] = useState(false);
   const [filter, setFilter] = useState<string>("all");
+  
+  // Opportunity Predictor State
+  const [missedOpportunities, setMissedOpportunities] = useState<any[]>([]);
+  const [alertManager] = useState(() => new AlertManager());
+  
+  // Gamification State
+  const [studentPoints, setStudentPoints] = useState(0);
+  const [studentBadge, setStudentBadge] = useState<any>(null);
 
   useEffect(() => {
     loadEvents();
     if (currentStudent) {
       loadRecommendations();
+      loadGamificationData();
     }
   }, [currentStudent]);
+
+  useEffect(() => {
+    if (currentStudent && events.length > 0) {
+      checkMissedOpportunities();
+    }
+  }, [events, currentStudent]);
+
+  const loadGamificationData = () => {
+    if (!currentStudent) return;
+    
+    const points = getStudentPoints(currentStudent.id);
+    setStudentPoints(points.totalPoints);
+    
+    const badgeStatus = getStudentBadgeStatus(currentStudent.id, points.totalPoints);
+    setStudentBadge(badgeStatus.currentBadge);
+  };
+
+  const checkMissedOpportunities = () => {
+    if (!currentStudent || !events.length) return;
+
+    const student: Student = {
+      id: currentStudent.id,
+      name: currentStudent.name,
+      interests: currentStudent.interests || [],
+      department: currentStudent.branch || currentStudent.program || "General",
+      pastEvents: [] // Could be fetched from event history
+    };
+
+    const opportunities: any[] = [];
+
+    events.forEach(event => {
+      // Convert EventInfo to OpportunityEvent
+      const opportunityEvent: OpportunityEvent = {
+        id: event.id,
+        name: event.name,
+        category: event.type,
+        department: (event as any).department || "General",
+        registration_deadline: (event as any).registration_deadline || "",
+        type: event.type
+      };
+
+      // Check if should show recommendation
+      if (shouldShowRecommendation(opportunityEvent, student) && !alertManager.isDismissed(event.id)) {
+        const matchResult = calculateMatch(opportunityEvent, student);
+        const hoursUntilDeadline = isClosingSoon(opportunityEvent) ? 
+          Math.round((new Date((event as any).registration_deadline || event.date).getTime() - new Date().getTime()) / (1000 * 60 * 60)) : 0;
+
+        opportunities.push({
+          event,
+          matchResult,
+          hoursUntilDeadline
+        });
+      }
+    });
+
+    setMissedOpportunities(opportunities);
+  };
+
+  const handleDismissOpportunity = (eventId: string) => {
+    alertManager.dismiss(eventId);
+    setMissedOpportunities(prev => prev.filter(opp => opp.event.id !== eventId));
+  };
 
   const loadEvents = async () => {
     try {
@@ -123,7 +216,20 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
 
       await campusAPI.registerForEvent(selectedEvent.id, studentProfile);
       
-      alert(`Successfully registered for ${selectedEvent.name}!`);
+      // Award points for event participation
+      const points = addPointsForParticipation(
+        currentStudent.id,
+        currentStudent.name,
+        selectedEvent.id,
+        selectedEvent.name,
+        selectedEvent.type
+      );
+
+      // Update gamification data
+      loadGamificationData();
+      
+      const pointsEarned = getPointsForEventType(selectedEvent.type);
+      alert(`Successfully registered for ${selectedEvent.name}! You earned ${pointsEarned} points! 🎉`);
       setShowGuidanceModal(false);
       loadEvents(); // Refresh event data
     } catch (error) {
@@ -168,6 +274,41 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
           <p className="text-xl text-gray-300">
             {currentStudent ? "ML-Powered Recommendations Just for You" : "Discover Amazing Events"}
           </p>
+          
+          {/* Gamification Status */}
+          {currentStudent && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mt-6 inline-flex items-center gap-4 bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-pink-500/10 px-6 py-3 rounded-2xl border border-white/10 backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-2">
+                <Trophy className="w-6 h-6 text-yellow-400" />
+                <div className="text-left">
+                  <div className="text-xs text-gray-400">Your Points</div>
+                  <div className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
+                    {studentPoints}
+                  </div>
+                </div>
+              </div>
+              
+              {studentBadge && (
+                <>
+                  <div className="w-px h-8 bg-white/20" />
+                  <div className="flex items-center gap-2">
+                    <Award className="w-6 h-6 text-purple-400" />
+                    <div className="text-left">
+                      <div className="text-xs text-gray-400">Current Badge</div>
+                      <div className={`text-sm font-bold bg-gradient-to-r ${studentBadge.gradient} bg-clip-text text-transparent`}>
+                        {studentBadge.icon} {studentBadge.name}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+            </motion.div>
+          )}
         </motion.div>
 
         {/* ML Recommendations Section */}
@@ -266,6 +407,37 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
           </motion.div>
         )}
 
+        {/* Missed Opportunity Alerts */}
+        {currentStudent && missedOpportunities.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-12 space-y-4"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <Clock className="w-8 h-8 text-orange-400" />
+              <h2 className="text-3xl font-bold text-white">
+                ⚡ Closing Soon - High Match Events
+              </h2>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {missedOpportunities.map((opportunity) => (
+                <MissedOpportunityAlert
+                  key={opportunity.event.id}
+                  eventId={opportunity.event.id}
+                  eventName={opportunity.event.name}
+                  eventType={opportunity.event.type}
+                  matchPercentage={opportunity.matchResult.percentage}
+                  hoursUntilDeadline={opportunity.hoursUntilDeadline}
+                  onDismiss={() => handleDismissOpportunity(opportunity.event.id)}
+                  onViewEvent={() => handleEventClick(opportunity.event)}
+                />
+              ))}
+            </div>
+          </motion.div>
+        )}
+
         {/* Filter */}
         <div className="flex flex-wrap gap-3 mb-8">
           {eventTypes.map((type) => (
@@ -288,6 +460,10 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
           {filteredEvents.map((event, idx) => {
             const recommendation = getRecommendationForEvent(event.name);
             
+            // Check if this event is a missed opportunity (high match + closing soon)
+            const isHighMatchClosing = missedOpportunities.some(opp => opp.event.id === event.id);
+            const matchPercentage = missedOpportunities.find(opp => opp.event.id === event.id)?.matchResult.percentage;
+
             return (
               <motion.div
                 key={event.id}
@@ -306,6 +482,13 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                   
+                  {/* AI Recommended Badge for High Match Events */}
+                  {isHighMatchClosing && matchPercentage && (
+                    <div className="absolute top-4 left-4">
+                      <AIRecommendedBadge matchPercentage={matchPercentage} compact={false} />
+                    </div>
+                  )}
+                  
                   {recommendation && (
                     <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg">
                       <Star className="w-3 h-3" />
@@ -323,41 +506,40 @@ export default function Events({ currentStudent, onLogin }: EventsProps) {
                   </div>
                 </div>
                 
-                <div className="p-6"
->
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2">
-                  {event.description}
-                </p>
+                <div className="p-6">
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-2">
+                    {event.description}
+                  </p>
 
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <Calendar className="w-4 h-4" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <MapPin className="w-4 h-4" />
-                    <span>{event.location}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <Users className="w-4 h-4" />
-                    <span>{event.registrations}/{event.max_participants} registered</span>
-                  </div>
-                  {event.prizes && (
-                    <div className="flex items-center gap-2 text-green-300">
-                      <Trophy className="w-4 h-4" />
-                      <span>{event.prizes}</span>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <Calendar className="w-4 h-4" />
+                      <span>{event.date}</span>
                     </div>
-                  )}
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-white/20">
-                  <div className="flex items-center justify-between">
-                    <span className="text-purple-300 text-sm font-semibold">
-                      {event.organizer}
-                    </span>
-                    <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <MapPin className="w-4 h-4" />
+                      <span>{event.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <Users className="w-4 h-4" />
+                      <span>{event.registrations}/{event.max_participants} registered</span>
+                    </div>
+                    {event.prizes && (
+                      <div className="flex items-center gap-2 text-green-300">
+                        <Trophy className="w-4 h-4" />
+                        <span>{event.prizes}</span>
+                      </div>
+                    )}
                   </div>
-                </div>
+
+                  <div className="mt-4 pt-4 border-t border-white/20">
+                    <div className="flex items-center justify-between">
+                      <span className="text-purple-300 text-sm font-semibold">
+                        {event.organizer}
+                      </span>
+                      <ChevronRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             );
