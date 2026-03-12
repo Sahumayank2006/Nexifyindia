@@ -7,8 +7,9 @@
 ✓ **Personalized Event Recommendations** - ML-powered suggestions based on your profile  
 ✓ **Smart Event Guidance** - Learn from 100,000+ past attendees  
 ✓ **Common Issues & Solutions** - What problems to avoid  
-✓ **Success Tips** - Insights from top performers  
-✓ **Campus Memory Platform** - Problem reporting, wisdom sharing, alerts  
+
+Testing YOLO badge
+✓  
 
 ---
 
